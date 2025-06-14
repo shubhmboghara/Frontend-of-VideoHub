@@ -19,7 +19,7 @@ export const getLikeCount = async (type, id) => {
 export const getsubscribercount = async (channelId) => {
   try {
     const response = await axios.get(
-      `/api/subscriber/subscribercount/${channelId}`
+      `/subscriber/subscribercount/${channelId}`
     );
     return response.data?.data?.count ?? 0;
   } catch (error) {

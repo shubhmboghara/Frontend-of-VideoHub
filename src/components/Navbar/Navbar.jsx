@@ -14,7 +14,7 @@ export default function Navbar({ onSearchResults, onSearching, onToggleSidebar }
           <div className="lg:hidden flex items-center">
             <button
               onClick={onToggleSidebar}
-              className="rounded-full hover:bg-white transition pb-6 "
+              className="rounded-full  transition pb-6 "
               aria-label="Open menu"
             >
               <HiMenu size={24} className='text-white' />

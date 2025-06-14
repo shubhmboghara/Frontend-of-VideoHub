@@ -11,7 +11,7 @@ function LogoutBtn({ showLabel = true, className = "" }) {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.post("/api/users/logout");
+      const res = await axios.post("/users/logout");
       if (res.status === 200) {
         dispatch(logout());
         navigate("/login");
