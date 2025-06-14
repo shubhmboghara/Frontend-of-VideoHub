@@ -12,7 +12,7 @@ const AuthLoader = ({ children }) => {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const res = await axios.get("users/current-user", { withCredentials: true });
+                const res = await axios.get("/users/current-user", { withCredentials: true });
                 const userData = res.data.data;
 
                 if (userData) {
