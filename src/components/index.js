@@ -8,7 +8,7 @@ import Signup from "./Signup";
 import Sidebar from "./Sidebar";
 import VideoCard from "./VideoCard";
 import VideoDetails from "./VideoDetails";
-import likedvideo from "./likedvideo";
+import Likedvideo from "./Likedvideo";
 import DefaultAvatar from "../assets/DefaultAvatar.png";
 import SubscribeButton from "./SubscribeButton";
 import DefaultCoverImage  from "../assets/DefaultCoverImage.png"
@@ -32,7 +32,7 @@ export{
     Sidebar,
     VideoCard,
     VideoDetails,
-    likedvideo,
+    Likedvideo,
     Loader,
     DefaultCoverImage,
     DefaultAvatar,
