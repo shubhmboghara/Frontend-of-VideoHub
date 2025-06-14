@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import axios from 'axios'
+import axios from '../hooks/axios'
 import { Button, Input, DefaultAvatar } from './index'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../redux/slices/authSlice'

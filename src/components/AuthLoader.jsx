@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../hooks/axios";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../redux/slices/authSlice";
-import Loader from "./Loader"; // Import the new Loader component
+import Loader from "./Loader"; 
 
 const AuthLoader = ({ children }) => {
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const AuthLoader = ({ children }) => {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const res = await axios.get("/api/users/current-user", { withCredentials: true });
+                const res = await axios.get("users/current-user", { withCredentials: true });
                 const userData = res.data.data;
 
                 if (userData) {

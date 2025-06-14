@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from "../hooks/axios";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import {Button,Input,Loader,VideoCard,folderImg,DeleteConfirmationModal} from './index';
 

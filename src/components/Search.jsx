@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "../hooks/axios";
 import { HiOutlineSearch } from "react-icons/hi";
 import { useNavigate, useLocation } from 'react-router-dom';
 

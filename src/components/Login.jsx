@@ -5,7 +5,7 @@ import { Button, Input } from './index'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { login as loginAction } from '../redux/slices/authSlice'
-import axios from 'axios'
+import axios from "../hooks/axios";
 import { useState } from 'react'
 
 
@@ -21,7 +21,7 @@ function Login({ showPopup }) {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('/api/users/login', data, {
+            const response = await axios.post('/users/login', data, {
                 withCredentials: true
             })
 

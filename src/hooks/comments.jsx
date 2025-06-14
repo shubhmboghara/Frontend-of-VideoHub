@@ -1,8 +1,4 @@
-import axios from 'axios';
-
-const API = axios.create({
-  baseURL: '/api/comments',
-});
+import API from "./axios";
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import  axios  from '../hooks/axios';
 import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../redux/slices/authSlice';
 import { Input, Button,DefaultCoverImage,DefaultAvatar } from './index';
