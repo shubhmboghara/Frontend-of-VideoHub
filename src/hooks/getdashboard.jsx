@@ -3,7 +3,7 @@ import axios from "./axios";
 export const getChannelVideos = async () => {
 
     try {
-        const response = await axios.get(`/api/dashboard/videos`)
+        const response = await axios.get(`/dashboard/videos`)
         return response.data;
     } catch (error) {
         console.error("Get liked videos  error:", error);

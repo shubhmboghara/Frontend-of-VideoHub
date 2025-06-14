@@ -98,7 +98,7 @@ export default function MultiStepSignup({ showPopup }) {
             if (coverImage && typeof coverImage === 'object' && coverImage instanceof File && coverImage.size > 0) {
                 payload.append('coverImage', coverImage);
             }
-            const res = await axios.post('/api/users/signup', payload, {
+            const res = await axios.post('/users/signup', payload, {
                 withCredentials: true,
                 headers: { 'Content-Type': 'multipart/form-data' },
             });

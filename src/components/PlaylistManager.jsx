@@ -18,7 +18,7 @@ const PlaylistManager = ({ videoId, authStatus, onPlaylistSelected, onClose }) =
   useEffect(() => {
     setLoading(true);
     setError(null);
-    axios.get('/api/playlist/user')
+    axios.get('/playlist/user')
       .then(res => {
         setPlaylists(res.data.data?.playlist || []);
       })
@@ -41,11 +41,11 @@ const PlaylistManager = ({ videoId, authStatus, onPlaylistSelected, onClose }) =
     setAddingId(playlistId);
     try {
       if (checked) {
-        await axios.patch(`/api/playlist/add/${videoId}/${playlistId}`);
+        await axios.patch(`/playlist/add/${videoId}/${playlistId}`);
       } else {
-        await axios.patch(`/api/playlist/remove/${videoId}/${playlistId}`);
+        await axios.patch(`/playlist/remove/${videoId}/${playlistId}`);
       }
-      const refreshed = await axios.get('/api/playlist/user');
+      const refreshed = await axios.get('/playlist/user');
       setPlaylists(refreshed.data.data?.playlist || []);
       if (onPlaylistSelected && checked) onPlaylistSelected(playlistId);
     } catch {
@@ -62,13 +62,13 @@ const PlaylistManager = ({ videoId, authStatus, onPlaylistSelected, onClose }) =
     setCreating(true);
     setError(null);
     try {
-      const res = await axios.post('/api/playlist', {
+      const res = await axios.post('/playlist', {
         name: newPlaylistName,
         description: newPlaylistDescription
       });
       const newPlaylist = res.data && res.data._id ? res.data : (res.data.data && res.data.data._id ? res.data.data : null);
       if (newPlaylist && newPlaylist._id) {
-        const refreshed = await axios.get('/api/playlist/user');
+        const refreshed = await axios.get('/playlist/user');
         setPlaylists(refreshed.data.data?.playlist || []);
         setNewPlaylistName('');
         setNewPlaylistDescription('');

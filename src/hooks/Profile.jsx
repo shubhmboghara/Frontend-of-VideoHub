@@ -3,7 +3,7 @@ import axios from "./axios";
 
 export const useProfileApi = () => {
   const getProfile = async (username) => {
-    const res = await axios.get(`/api/users/c/${username}`);
+    const res = await axios.get(`/users/c/${username}`);
     return res.data.data;
   };
 

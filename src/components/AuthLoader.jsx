@@ -25,12 +25,12 @@ const AuthLoader = ({ children }) => {
 
                 if (err.response?.status === 401) {
                     try {
-                        const refreshRes = await axios.post("/api/users/refresh-token", {}, { withCredentials: true });
+                        const refreshRes = await axios.post("/users/refresh-token", {}, { withCredentials: true });
 
                         if (refreshRes.status === 200) {
                             console.log("Token refreshed successfully");
 
-                            const retryRes = await axios.get("/api/users/current-user", { withCredentials: true });
+                            const retryRes = await axios.get("/users/current-user", { withCredentials: true });
                             const userData = retryRes.data.data;
 
                             if (userData) {
@@ -60,7 +60,7 @@ const AuthLoader = ({ children }) => {
     }, [dispatch]);
 
     if (isLoading) {
-        return <Loader message="Authenticating..." />; // Display Loader while authenticating
+        return <Loader message="Authenticating..." />; 
     }
 
     return children;

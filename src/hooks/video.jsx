@@ -3,7 +3,7 @@ import axios from "./axios";
     export const updateVideo= async (videoId, formData) => {
     
     try {
-        const response = await axios.patch(`/api/video/${videoId}`, formData)
+        const response = await axios.patch(`/video/${videoId}`, formData)
         return response.data;
     } catch (error) {
         console.error("Update video error:", error);
@@ -14,7 +14,7 @@ import axios from "./axios";
     export const deleteVideo= async (videoId) => {
         
         try {
-            const response = await axios.delete(`/api/video/${videoId}`)
+            const response = await axios.delete(`/video/${videoId}`)
             return response.data;
         } catch (error) {
             console.error("delete Video error:", error);
@@ -25,7 +25,7 @@ import axios from "./axios";
     export const publishAVideo= async (formData) => {
     
     try {
-        const response = await axios.post(`/api/video/`, formData)
+        const response = await axios.post(`/video/`, formData)
         return response.data;
     } catch (error) {
         console.error("Publish video error:", error);

@@ -14,9 +14,9 @@ export function useVideo(id) {
         setLoading(true);
         setError(null);
         
-        const allVideosPromise = axios.get('/api/video');
+        const allVideosPromise = axios.get('/video');
         const singleVideoPromise = id 
-          ? axios.get(`/api/video/${id}`) 
+          ? axios.get(`/video/${id}`) 
           : Promise.resolve(null);
 
         const [allRes, singleRes] = await Promise.all([

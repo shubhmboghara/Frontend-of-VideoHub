@@ -22,7 +22,7 @@ const Search = ({ onSearchResults, onSearching }) => {
     setLoading(true);
     onSearching(true);
     try {
-      const { data } = await axios.get(`/api/video?query=${encodeURIComponent(searchTerm)}`)
+      const { data } = await axios.get(`/video?query=${encodeURIComponent(searchTerm)}`)
       onSearchResults(data?.data?.videos || []);
       if (location.pathname !== "/") {
         navigate("/");

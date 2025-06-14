@@ -55,7 +55,7 @@ function UserSettings() {
       const formData = new FormData()
       formData.append('avatar', avatarFile)
 
-      const res = await axios.patch('/api/users/update-avatar', formData, {
+      const res = await axios.patch('/users/update-avatar', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -82,7 +82,7 @@ function UserSettings() {
 
     setLoading(true)
     try {
-      const res = await axios.patch('/api/users/update-account-detai1s', { fullname, email })
+      const res = await axios.patch('/users/update-account-detai1s', { fullname, email })
       dispatch(login({ ...user, fullname, email }))
       setMsg('Account details updated successfully.')
       setChanged(false)

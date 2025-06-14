@@ -41,7 +41,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
 
   const addVideoToPlaylist = async (videoId, playlistId) => {
     try {
-      await axios.patch(`/api/playlist/add/${videoId}/${playlistId}`);
+      await axios.patch(`/playlist/add/${videoId}/${playlistId}`);
     } catch (error) {
       console.error('Error adding video to playlist:', error);
     }
@@ -49,7 +49,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
 
   const removeVideoFromPlaylist = async (videoId, playlistId) => {
     try {
-      await axios.patch(`/api/playlist/remove/${videoId}/${playlistId}`);
+      await axios.patch(`/playlist/remove/${videoId}/${playlistId}`);
     } catch (error) {
       console.error('Error removing video from playlist:', error);
     }
@@ -57,7 +57,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
 
   const updatePlaylist = async (playlistId, newName) => {
     try {
-      await axios.patch(`/api/playlist/${playlistId}`, { name: newName });
+      await axios.patch(`/playlist/${playlistId}`, { name: newName });
     } catch (error) {
       console.error('Error updating playlist:', error);
     }
@@ -65,7 +65,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
 
   const deletePlaylist = async (playlistId) => {
     try {
-      await axios.delete(`/api/playlist/${playlistId}`);
+      await axios.delete(`/playlist/${playlistId}`);
     } catch (error) {
       console.error('Error deleting playlist:', error);
     }
@@ -76,7 +76,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
     setVideosError(null);
     setSelectedPlaylist(playlistId);
     try {
-      const res = await axios.get(`/api/playlist/${playlistId}`);
+      const res = await axios.get(`/playlist/${playlistId}`);
       if (res.data.success) {
         setPlaylistVideos(res.data.data.playlist?.videos || []);
       } else {
