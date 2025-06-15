@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { getChannelStats, getChannelVideos, togglePublishStatus } from '../hooks/getdashboard';
 import { deleteVideo, updateVideo } from '../hooks/video';
@@ -120,7 +119,7 @@ function DashboardChannel({ showPopup }) {
     }
 
     return (
-        <div className="min-h-screen bg-[#18181b] text-white p-8 relative lg:left-68 lg:w-325">
+        <div className="min-h-screen bg-[#18181b] text-white p-8 relative lg:left-63 lg:w-318 pl-5">
             <h1 className="text-3xl font-bold mb-8">Welcome    </h1>
             <p className="text-gray-400 mb-8">Track, manage and forecast your channel.</p>
         
@@ -158,7 +157,7 @@ function DashboardChannel({ showPopup }) {
 
             <div className="bg-[#2a2a31] p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-6">Uploaded Videos</h2>
-                <div className="overflow-x-auto lg:overflow-hidden">
+                <div className="overflow-x-auto lg:overflow-hidden modal-scroll">
                     <table className="min-w-full text-sm text-left">
 
                         <thead>

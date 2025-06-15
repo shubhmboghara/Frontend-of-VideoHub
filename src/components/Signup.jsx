@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import  axios  from '../hooks/axios';
+import axios from '../hooks/axios';
 import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../redux/slices/authSlice';
-import { Input, Button,DefaultCoverImage,DefaultAvatar } from './index';
+import { Input, Button, DefaultCoverImage, DefaultAvatar } from './index';
 import { useForm } from 'react-hook-form';
 
 const steps = ['Account Information', 'Upload Profile Picture', 'Upload Cover Image', 'Review'];
 
 function validatePassword(password) {
-  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  return strongPasswordRegex.test(password.trim());
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return strongPasswordRegex.test(password.trim());
 }
 
 export default function MultiStepSignup({ showPopup }) {
@@ -60,7 +60,7 @@ export default function MultiStepSignup({ showPopup }) {
             reader.readAsDataURL(file);
         } else {
             setValue(type, null);
-            setValue(isAvatar ? 'avatarPreview' : 'coverPreview', isAvatar ? DefaultAvatar : DefaultCover);
+            setValue(isAvatar ? 'avatarPreview' : 'coverPreview', isAvatar ? DefaultAvatar : DefaultCoverImage);
             setValue(isAvatar ? 'avatarIsDefault' : 'coverIsDefault', true);
         }
     };
@@ -102,7 +102,7 @@ export default function MultiStepSignup({ showPopup }) {
                 withCredentials: true,
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            const userData = res.data.data.user;
+            const userData = res.data.data;
             dispatch(loginAction(userData));
             navigate('/');
             showPopup && showPopup('Signup successful!', 'success');
@@ -150,11 +150,11 @@ export default function MultiStepSignup({ showPopup }) {
                                     message: 'Enter a valid email address',
                                 },
                             })}
-                            value={form.email}
-                            onChange={e => setValue('email', e.target.value)}
-                            placeholder="Email address"
-                            required
-                            error={errors.email}
+                                value={form.email}
+                                onChange={e => setValue('email', e.target.value)}
+                                placeholder="Email address"
+                                required
+                                error={errors.email}
                             />
                             {errors.email && (
                                 <div className="text-red-500 text-xs mt-1">{errors.email.message}</div>

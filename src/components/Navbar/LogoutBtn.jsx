@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlice';
-import axios from 'axios';
+import axios from '../../hooks/axios';
 import { useNavigate } from 'react-router-dom';
 import { HiLogout } from 'react-icons/hi';
 
