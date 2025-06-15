@@ -39,7 +39,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
     return (
         <div className={className}>
             <div className="hidden lg:block border-r fixed border-gray-700 z-200 top-[68px] bottom-0 bg-[#18181b]">
-                <div className={`h-full text-white flex flex-col ${Width} z-50 pl-3 mr-2 `}>
+                <div className={`h-full text-white flex flex-col ${Width} z-50 pl-3 mr-2 overflow-y-auto modal-scroll`}>
                     {loggedInUser && (
                         <Link to={`/profile/${loggedInUser.username}`} >
                             <div className="flex items-center mb-6 cursor-pointer p-5 pt-8">
@@ -86,7 +86,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
             ></div>
             <div
                 className={`fixed top-0 bottom-0 left-0 h-full bg-[#18181b] w-64 z-50 transform transition-transform duration-300 ease-in-out
-                ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden overflow-y-auto  modal-scroll  `}
+                ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden overflow-y-auto  modal-scroll`}
             >
 
                 <div className=" text-white flex flex-col pl-3 mr-2  pt-20">
