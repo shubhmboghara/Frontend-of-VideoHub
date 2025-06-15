@@ -24,13 +24,13 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
 
 
     const navItems = [
-        { label: "Home", icon: <HiHome size={27} />, slug: "/" },
-        { label: "Liked Videos", icon: <HiThumbUp size={27} />, slug: "/likedvideos" },
-        { label: "History", icon: <HiClock size={27} />, slug: "/history" },
-        { label: "My content", icon: <HiVideoCamera size={27} />, slug: "/my-content" },
-        { label: "playlists", icon: <HiFolder size={27} />, slug: "/playlists" },
-        { label: "Subscriptions", icon: <HiUsers size={27} />, slug: "/subscriptions" },
-        { label: "Settings", icon: <HiCog size={27} />, slug: "/settings" }
+        { label: "Home", icon: <HiHome size={30} />, slug: "/" },
+        { label: "Liked Videos", icon: <HiThumbUp size={30} />, slug: "/likedvideos" },
+        { label: "History", icon: <HiClock size={30} />, slug: "/history" },
+        { label: "My content", icon: <HiVideoCamera size={30} />, slug: "/my-content" },
+        { label: "playlists", icon: <HiFolder size={30} />, slug: "/playlists" },
+        { label: "Subscriptions", icon: <HiUsers size={30} />, slug: "/subscriptions" },
+        { label: "Settings", icon: <HiCog size={30} />, slug: "/settings" }
     ];
 
     const authStatus = useSelector((state) => state.auth.status);
@@ -58,7 +58,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
                         </Link>
                     )}
 
-                    <div className="space-y-2 flex-col flex gap-1">
+                    <div className="space-y-2  flex-col flex gap-3">
                         {navItems.map((item) => {
                             const isActive = location.pathname === item.slug;
                             return (
@@ -86,7 +86,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
             ></div>
             <div
                 className={`fixed top-0 bottom-0 left-0 h-full bg-[#18181b] w-64 z-50 transform transition-transform duration-300 ease-in-out
-                ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden overflow-y-auto `}
+                ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden overflow-y-auto modal-scroll `}
             >
 
                 <div className=" text-white flex flex-col pl-3 mr-2  pt-20">
