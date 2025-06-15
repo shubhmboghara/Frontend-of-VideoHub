@@ -157,7 +157,7 @@ function DashboardChannel({ showPopup }) {
 
             <div className="bg-[#2a2a31] p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-6">Uploaded Videos</h2>
-                <div className="overflow-x-auto lg:overflow-hidden modal-scroll">
+                <div className="overflow-x-auto lg:overflow-hidden modal-scroll ">
                     <table className="min-w-full text-sm text-left">
 
                         <thead>
