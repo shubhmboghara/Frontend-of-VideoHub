@@ -107,8 +107,8 @@ export default function VideoDetails({ showPopup }) {
   }
 
   return (
-     <div className="flex min-h-screen bg-[#18181b] relative right-7">
-      <main className="flex-1 p-6 text-white relative left-10 pl-8">
+     <div className="flex min-h-screen bg-[#18181b]  ">
+      <main className="flex-1 p-6 text-white  ">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden bg-black">
             <video
