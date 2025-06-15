@@ -119,7 +119,7 @@ function DashboardChannel({ showPopup }) {
     }
 
     return (
-        <div className="min-h-screen bg-[#18181b] text-white p-8 relative lg:left-75 lg:w-320 ml-1 ">
+        <div className="min-h-screen bg-[#18181b] text-white p-8 relative lg:left-72 lg:w-320 ml-5">
             <h1 className="text-3xl font-bold mb-8">Welcome </h1>
             <p className="text-gray-400 mb-8">Track, manage and forecast your channel.</p>
         
