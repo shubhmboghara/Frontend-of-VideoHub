@@ -107,10 +107,10 @@ export default function VideoDetails({ showPopup }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#18181b] relative right-7">
-      <main className="flex-1 p-6 text-white relative left-10 ">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden bg-black">
+    <div className="flex min-h-screen bg-[#18181b]">
+      <main className="flex-1 p-6 text-white lg:pl-22 ">
+        <div className="max-w-4xl mx-auto space-y-6 ">
+          <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden bg-black ">
             <video
               src={video.VideoFile}
               controls
@@ -119,11 +119,8 @@ export default function VideoDetails({ showPopup }) {
             />
           </div>
 
-
-
           <div className="p-6 rounded-xl border border-gray-800">
             <h1 className="text-2xl font-bold mb-4">{video.title}</h1>
-
             <div className="flex items-center justify-between text-gray-400">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1">
@@ -141,12 +138,14 @@ export default function VideoDetails({ showPopup }) {
                   disabled={likeLoading}
                   onClick={handleVideoLike}
                   className={`
-                    inline-flex items-center gap-1 px-3 h-9 rounded-md 
-                    transition-all duration-200
-                    ${isLikedInStore ? 'bg-purple-600 text-white border-gray-600' : 'border border-gray-600 text-white hover:bg-gray-800'} 
-                    text-sm disabled:opacity-50 
-                    ${likeLoading ? 'pointer-events-none' : ''}
-                  `}
+                  inline-flex items-center gap-1 px-3 h-9 rounded-md 
+                  transition-all duration-200
+                  ${isLikedInStore
+                      ? 'bg-purple-600 text-white border-gray-600'
+                      : 'border border-gray-600 text-white hover:bg-gray-800'}
+                  text-sm disabled:opacity-50
+                  ${likeLoading ? 'pointer-events-none' : ''}
+                `}
                 >
                   <HiThumbUp className="h-4 w-4" />
                   {likeLoading ? '...' : isLikedInStore ? 'Liked' : 'Like'} ({likesCount})
@@ -160,37 +159,52 @@ export default function VideoDetails({ showPopup }) {
                     <HiFolderAdd className="h-4 w-4" /> Save
                   </Button>
                   {showPlaylistModal && (
-                    <div ref={playlistDropdownRef} className="absolute top-full left-0 mt-2 z-50 bg-gray-900 p-4 rounded-lg shadow-lg w-80">
-                      <PlaylistManager videoId={id} authStatus={authStatus} onPlaylistSelected={handlePlaylistSelected} onClose={() => setShowPlaylistModal(false)} />
+                    <div
+                      ref={playlistDropdownRef}
+                      className="absolute top-full left-0 mt-2 z-50 bg-gray-900 p-4 rounded-lg shadow-lg w-80"
+                    >
+                      <PlaylistManager
+                        videoId={id}
+                        authStatus={authStatus}
+                        onPlaylistSelected={handlePlaylistSelected}
+                        onClose={() => setShowPlaylistModal(false)}
+                      />
                     </div>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center gap-4">
-              <img
-                src={video.owner.avatar && video.owner.avatar.trim() !== '' ? video.owner.avatar : DefaultAvatar}
-                alt={video.owner.username}
-                className="w-12 h-12 rounded-full cursor-pointer"
-                onError={e => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
-                onClick={() => navigate(`/profile/${video.owner.username}`)}
-              />
-              <div>
-                <h2 className="font-medium">{video.owner.username}</h2>
-                <p className="text-sm text-gray-400">
-                  {subscriberCount} subscriber{subscriberCount === 1 ? '' : 's'}
-                </p>
+            <div className="mt-6 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <img
+                  src={
+                    video.owner.avatar && video.owner.avatar.trim() !== ''
+                      ? video.owner.avatar
+                      : DefaultAvatar
+                  }
+                  alt={video.owner.username}
+                  className="w-12 h-12 rounded-full cursor-pointer"
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = DefaultAvatar;
+                  }}
+                  onClick={() => navigate(`/profile/${video.owner.username}`)}
+                />
+                <div>
+                  <h2 className="font-medium">{video.owner.username}</h2>
+                  <p className="text-sm text-gray-400">
+                    {subscriberCount} subscriber{subscriberCount === 1 ? '' : 's'}
+                  </p>
+                </div>
               </div>
 
-              <div className="flex items-center space-x-2 relative lg:left-135">
-                <SubscribeButton
-                  channelId={video.owner._id}
-                  initialSubscribed={video.owner.isSubscribed}
-                  currentCount={subscriberCount}
-                  onCountChange={handleSubscriberCountChange}
-                />
-              </div>
+              <SubscribeButton
+                channelId={video.owner._id}
+                initialSubscribed={video.owner.isSubscribed}
+                currentCount={subscriberCount}
+                onCountChange={handleSubscriberCountChange}
+              />
             </div>
 
             <p className="mt-6 text-gray-300">{video.description}</p>
@@ -198,8 +212,6 @@ export default function VideoDetails({ showPopup }) {
 
           <CommentSection videoId={id} showPopup={showPopup} />
         </div>
-
-
 
         <aside className="mt-10 bg-[#18181b] lg:hidden">
           {videos?.length ? (
@@ -223,7 +235,7 @@ export default function VideoDetails({ showPopup }) {
         </aside>
       </main>
 
-      <aside className="hidden lg:block p-4 space-y-4 bg-[#18181b] w-96 mr-15 relative right-4 ">
+      <aside className="hidden lg:block p-4 space-y-4 bg-[#18181b] w-96 mr-15 relative right-4">
         {videos?.length ? (
           videos.map((sugg) => (
             <VideoCard
@@ -262,7 +274,6 @@ export default function VideoDetails({ showPopup }) {
           </div>
         </div>
       )}
-
     </div>
   );
 }

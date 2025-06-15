@@ -24,13 +24,13 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
 
 
     const navItems = [
-        { label: "Home", icon: <HiHome size={30} />, slug: "/" },
-        { label: "Liked Videos", icon: <HiThumbUp size={30} />, slug: "/likedvideos" },
-        { label: "History", icon: <HiClock size={30} />, slug: "/history" },
-        { label: "My content", icon: <HiVideoCamera size={30} />, slug: "/my-content" },
-        { label: "playlists", icon: <HiFolder size={30} />, slug: "/playlists" },
-        { label: "Subscriptions", icon: <HiUsers size={30} />, slug: "/subscriptions" },
-        { label: "Settings", icon: <HiCog size={30} />, slug: "/settings" }
+        { label: "Home", icon: <HiHome size={28} />, slug: "/" },
+        { label: "Liked Videos", icon: <HiThumbUp size={28} />, slug: "/likedvideos" },
+        { label: "History", icon: <HiClock size={28} />, slug: "/history" },
+        { label: "My content", icon: <HiVideoCamera size={28} />, slug: "/my-content" },
+        { label: "playlists", icon: <HiFolder size={28} />, slug: "/playlists" },
+        { label: "Subscriptions", icon: <HiUsers size={28} />, slug: "/subscriptions" },
+        { label: "Settings", icon: <HiCog size={28} />, slug: "/settings" }
     ];
 
     const authStatus = useSelector((state) => state.auth.status);
@@ -39,7 +39,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
     return (
         <div className={className}>
             <div className="hidden lg:block border-r fixed border-gray-700 z-200 top-[68px] bottom-0 bg-[#18181b]">
-                <div className={`h-full text-white flex flex-col ${Width} z-50 pl-3 mr-2 overflow-y-auto modal-scroll`}>
+                <div className={`h-full text-white flex flex-col ${Width} z-50 pl-3 mr-2 overflow-y-auto `}>
                     {loggedInUser && (
                         <Link to={`/profile/${loggedInUser.username}`} >
                             <div className="flex items-center mb-6 cursor-pointer p-5 pt-8">
@@ -58,7 +58,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
                         </Link>
                     )}
 
-                    <div className="space-y-2  flex-col flex gap-3">
+                    <div className="space-y-1  flex-col flex gap-3">
                         {navItems.map((item) => {
                             const isActive = location.pathname === item.slug;
                             return (
