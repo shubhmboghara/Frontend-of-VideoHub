@@ -1,4 +1,3 @@
-// src/components/AuthLoader.jsx
 import { useEffect, useState } from "react";
 import axiosInstance from "../hooks/axios";    
 import { useDispatch } from "react-redux";
@@ -34,7 +33,6 @@ const AuthLoader = ({ children }) => {
             }
           } catch (refreshError) {
             console.error("Token refresh error:", refreshError);
-            // clear stale cookies
             document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             dispatch(logout());
