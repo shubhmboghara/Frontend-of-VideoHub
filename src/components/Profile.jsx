@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProfileApi } from "../hooks/profile";
+import { useProfileApi } from "../hooks/Profile";
 import {
   DefaultAvatar,
   Button,
