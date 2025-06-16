@@ -41,7 +41,7 @@ export const useProfileApi = () => {
   };
 
   const updateCoverImage = async (formData) => {
-    const res = await axios.patch(`/api/users/updatecover-image`, formData, {
+    const res = await axios.patch(`/users/updatecover-image`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     return res.data.data;
@@ -50,7 +50,7 @@ export const useProfileApi = () => {
 
 
   const getideoByuser = async (userId) => {
-    const res = await axios.get(`/api/video/u/${userId}`);
+    const res = await axios.get(`/video/u/${userId}`);
     return res.data.data;
   };
 
