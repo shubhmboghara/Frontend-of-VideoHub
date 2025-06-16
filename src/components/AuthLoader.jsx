@@ -18,7 +18,7 @@ const AuthLoader = ({ children }) => {
                 if (userData) {
                     dispatch(login(userData));
                 }
-             } catch (err) {
+            } catch (err) {
                 console.error("Error in AuthLoader:", err);
 
                 if (err.response?.status === 401) {
