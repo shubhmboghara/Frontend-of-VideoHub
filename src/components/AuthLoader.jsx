@@ -17,10 +17,8 @@ const AuthLoader = ({ children }) => {
 
                 if (userData) {
                     dispatch(login(userData));
-                } else {
-                    dispatch(logout());
-                }
-            } catch (err) {
+
+             } catch (err) {
                 console.error("Error in AuthLoader:", err);
 
                 if (err.response?.status === 401) {
@@ -73,9 +71,7 @@ const AuthLoader = ({ children }) => {
                         document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                         dispatch(logout());
                     }
-                } else {
-                    dispatch(logout());
-                }
+
             } finally {
                 setIsLoading(false); 
             }
