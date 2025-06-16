@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "../hooks/axios";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../redux/slices/authSlice";
-import Loader from "./Loader"; 
+import Loader from "./Loader";
 
 const AuthLoader = ({ children }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
@@ -22,6 +23,7 @@ const AuthLoader = ({ children }) => {
         setIsLoading(false);
       }
     };
+
     fetchCurrentUser();
   }, [dispatch]);
 
