@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { getlikedvideos } from '../hooks/getlikedvideos';
 import {Loader,VideoCard} from "./index"
 
-function likedvideo() {
-
+function LikedVideo() {
     const userId = useSelector((state) => state.auth.user?._id);
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);

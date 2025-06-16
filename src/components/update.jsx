@@ -105,7 +105,7 @@ function UserSettings() {
 
     setLoading(true)
     try {
-      await axios.patch('/users/change-password', { oldPassword, newPassword })
+      await axios.patch('/api/users/change-password', { oldPassword, newPassword })
       setMsg('Password updated successfully.')
       setOldPassword('')
       setNewPassword('')

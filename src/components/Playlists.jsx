@@ -3,6 +3,7 @@ import axios from "../hooks/axios";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import {Button,Input,Loader,VideoCard,folderImg,DeleteConfirmationModal} from './index';
 
+const API_BASE = '/api/playlist';
 
 function PlaylistsComponent({ onPlaylistSelected }) {
   const [playlists, setPlaylists] = useState([]);
@@ -25,7 +26,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
   useEffect(() => {
     const fetchUserPlaylists = async () => {
       try {
-        const res = await axios.get(`/playlist/user`);
+        const res = await axios.get(`${API_BASE}/user`);
         if (res.data.success) {
           setPlaylists(res.data.data.playlist);
         }
@@ -94,7 +95,7 @@ function PlaylistsComponent({ onPlaylistSelected }) {
     setCreating(true);
     setCreateError(null);
     try {
-      const res = await axios.post('/playlist', {
+      const res = await axios.post('/api/playlist', {
         name: newPlaylistName,
         description: newPlaylistDescription
       });

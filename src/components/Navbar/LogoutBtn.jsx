@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlice';
-import axios from '../../hooks/axios';
+import { axiosInstance } from '../../hooks/axios';
 import { useNavigate } from 'react-router-dom';
 import { HiLogout } from 'react-icons/hi';
 
@@ -11,7 +11,7 @@ function LogoutBtn({ showLabel = true, className = "" }) {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.post("/users/logout");
+      const res = await axiosInstance.post("/users/logout");
       if (res.status === 200) {
         dispatch(logout());
         navigate("/login");
