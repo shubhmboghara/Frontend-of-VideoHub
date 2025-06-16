@@ -5,40 +5,31 @@ import { login, logout } from "../redux/slices/authSlice";
 import Loader from "./Loader"; 
 
 const AuthLoader = ({ children }) => {
-    const dispatch = useDispatch();
-    const [isLoading, setIsLoading] = useState(true); 
-    
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const res = await axios.get("/users/current-user", { withCredentials: true });
+        const userData = res.data.data;
+        if (userData) {
+          dispatch(login(userData));
+        }
+      } catch (err) {
+        console.error("Error in AuthLoader:", err);
+        dispatch(logout());
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchCurrentUser();
+  }, [dispatch]);
 
-    useEffect(() => {
-        const fetchCurrentUser = async () => {
-            try {
-                const res = await axios.get("/users/current-user", { withCredentials: true });
-                const userData = res.data.data;
+  if (isLoading) {
+    return <Loader message="Authenticating..." />;
+  }
 
-                if (userData) {
-                    dispatch(login(userData));
-                }
-            } catch (err) {
-                console.error("Error in AuthLoader:", err);
-
-                if (err.response?.status === 401) {
-                    dispatch(logout());
-                } else {
-                    dispatch(logout());
-                }
-            } finally {
-                setIsLoading(false); 
-            }
-        };
-
-        fetchCurrentUser();
-    }, [dispatch]);
-
-    if (isLoading) {
-        return <Loader message="Authenticating..." />; 
-    }
-
-    return children;
+  return children;
 };
 
 export default AuthLoader;
