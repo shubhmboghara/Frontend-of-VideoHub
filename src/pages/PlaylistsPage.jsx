@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaylistsComponent from '../components/playlists';
+import PlaylistsComponent from '../components/Playlists';
 
 function PlaylistsPage() {
   return (
