@@ -14,13 +14,12 @@ const likesSlice = createSlice({
       addVideoLike: (state, action) => {
       const videoId = action.payload;
       if (!state.likedVideos.includes(videoId)) {
-        state.likedVideos.push(videoId); // Add ID if not already present
-        console.log(`Redux: Added video ID ${videoId} to likedVideos.`);
+        state.likedVideos.push(videoId);
       }
     },
     removeVideoLike: (state, action) => {
       const videoId = action.payload;
-      state.likedVideos = state.likedVideos.filter(id => id !== videoId); // Remove ID
+      state.likedVideos = state.likedVideos.filter(id => id !== videoId); 
       console.log(`Redux: Removed video ID ${videoId} from likedVideos.`);
     },
         

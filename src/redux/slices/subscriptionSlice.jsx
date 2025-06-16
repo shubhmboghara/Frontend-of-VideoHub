@@ -17,7 +17,7 @@ const subscriptionSlice = createSlice({
   name: 'subscription',
   initialState: {
     subscribedChannels: {},
-    subscribersCount: 0, // Add subscribersCount to the initial state
+    subscribersCount: 0, 
     loading: false,
     error: null,
   },
@@ -29,9 +29,9 @@ const subscriptionSlice = createSlice({
         state.error = null;
       })
       .addCase(toggleSubscription.fulfilled, (state, action) => {
-        const { channelId, subscribed, subscribersCount } = action.payload; // Destructure subscribersCount from payload
+        const { channelId, subscribed, subscribersCount } = action.payload; 
         state.subscribedChannels[channelId] = subscribed;
-        state.subscribersCount = subscribersCount; // Update subscribersCount in state
+        state.subscribersCount = subscribersCount; 
         state.loading = false;
       })
       .addCase(toggleSubscription.rejected, (state, action) => {
