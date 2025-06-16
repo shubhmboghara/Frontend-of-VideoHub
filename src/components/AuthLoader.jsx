@@ -31,7 +31,7 @@ const AuthLoader = ({ children }) => {
     return <Loader message="Authenticating..." />;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default AuthLoader;
