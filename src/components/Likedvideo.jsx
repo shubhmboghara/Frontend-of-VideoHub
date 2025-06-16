@@ -56,4 +56,4 @@ function LikedVideo() {
     )
 }
 
-export default likedvideo
+export default LikedVideo

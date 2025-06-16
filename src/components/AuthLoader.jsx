@@ -17,61 +17,15 @@ const AuthLoader = ({ children }) => {
 
                 if (userData) {
                     dispatch(login(userData));
-
+                }
              } catch (err) {
                 console.error("Error in AuthLoader:", err);
 
                 if (err.response?.status === 401) {
-                    try {
-                        const refreshRes = await axios.post("/users/refresh-token", {}, { withCredentials: true });
-
-                        if (refreshRes.status === 200) {
-                            console.log("Token refreshed successfully");
-
-                            const retryRes = await axios.get("/users/current-user", { withCredentials: true });
-                            const userData = retryRes.data.data;
-
-                            if (userData) {
-                                dispatch(login(userData));
-                            } else {
-                                dispatch(logout());
-                            }
-                        } else {
-                            console.error("Token refresh failed");
-                            dispatch(logout());
-                        }
-                    } catch (refreshError) {
-                        console.error("Token refresh error:", refreshError);
-                        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                        document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                        dispatch(logout());
-                    }
+                    dispatch(logout());
                 } else {
-                    try {
-                        const refreshRes = await axios.post("/users/refresh-token", {}, { withCredentials: true });
-
-                        if (refreshRes.status === 200) {
-                            console.log("Token refreshed successfully");
-
-                            const retryRes = await axios.get("/users/current-user", { withCredentials: true });
-                            const userData = retryRes.data.data;
-
-                            if (userData) {
-                                dispatch(login(userData));
-                            } else {
-                                dispatch(logout());
-                            }
-                        } else {
-                            console.error("Token refresh failed");
-                            dispatch(logout());
-                        }
-                    } catch (refreshError) {
-                        console.error("Token refresh error:", refreshError);
-                        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                        document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                        dispatch(logout());
-                    }
-
+                    dispatch(logout());
+                }
             } finally {
                 setIsLoading(false); 
             }
