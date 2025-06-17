@@ -174,11 +174,14 @@ export default function Profile({ username: propUsername, loggedInUser }) {
   return (
     <div className="relative w-full max-w-700 mx-auto   lg:pl-68 ">
       <div className="relative h-60 sm:h-72 bg-gradient-to-r from-gray-700 to-gray-900">
+
         <img
           src={profile.coverImage || DefaultCoverImage}
+          onError={(e) => { e.target.onerror = null; e.target.src = DefaultCoverImage; }}
           alt="Cover"
           className="w-full h-full object-cover opacity-80"
         />
+
         {isOwner && (
           <label className="absolute top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">
             Change Cover
@@ -192,11 +195,14 @@ export default function Profile({ username: propUsername, loggedInUser }) {
         )}
         <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
           <label className="relative block group">
+            
             <img
               src={profile.avatar || DefaultAvatar}
+              onError={(e) => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
               alt="Avatar"
               className="w-32 h-32 rounded-full border-4 border-purple-600 bg-gray-800 object-cover shadow-lg"
             />
+
             <span className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-purple-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Change</span>
 
             {isOwner && (

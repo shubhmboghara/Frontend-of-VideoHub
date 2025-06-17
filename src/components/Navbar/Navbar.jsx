@@ -8,7 +8,7 @@ export default function Navbar({ onSearchResults, onSearching, onToggleSidebar }
   const authStatus = useSelector((state) => state.auth.status);
 
   return (
-    <header className="fixed w-full shadow z-9999 h-17 bg-[#18181b] border-b border-gray-700 p-4 text-[#020817]">
+    <header className="fixed w-full shadow z-9999999 h-17 bg-[#18181b] border-b border-gray-700 p-4 text-[#020817]">
       <Container>
         <div className="flex items-center justify-between h-16">
           <div className="lg:hidden flex items-center">

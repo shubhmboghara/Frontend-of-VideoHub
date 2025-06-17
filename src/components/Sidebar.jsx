@@ -86,7 +86,7 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
             ></div>
             <div
                 className={`fixed top-0 bottom-0 left-0 h-full bg-[#18181b] w-64 z-50 transform transition-transform duration-300 ease-in-out
-                ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden overflow-y-auto modal-scroll `}
+                ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden overflow-y-auto modal-scroll z-999`}
             >
 
                 <div className=" text-white flex flex-col pl-3 mr-2  pt-20">
