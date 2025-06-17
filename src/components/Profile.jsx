@@ -167,8 +167,6 @@ export default function Profile({ username: propUsername, loggedInUser }) {
   const isOwner = loggedInUser && profile && loggedInUser.username === profile.username;
 
 
-  const bio = profile.bio || "This user hasn't added a channel description yet.";
-  const socials = profile.socialLinks || [];
 
 
   return (
@@ -195,7 +193,7 @@ export default function Profile({ username: propUsername, loggedInUser }) {
         )}
         <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
           <label className="relative block group">
-            
+
             <img
               src={profile.avatar || DefaultAvatar}
               onError={(e) => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
@@ -237,25 +235,7 @@ export default function Profile({ username: propUsername, loggedInUser }) {
             <strong>{profile.channelsSubscribedToCount}</strong> Subscribed
           </span>
         </div>
-        <p className="mt-4 text-gray-300 max-w-3xl mx-auto sm:mx-0 break-words">
-          {bio}
-        </p>
-        {socials.length > 0 && (
-          <div className="flex flex-wrap gap-3 mt-3 justify-center sm:justify-start">
-            {socials.map((s, i) => (
-              <a
-                key={i}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-blue-400 hover:underline text-sm"
-              >
-                {s.icon && <img src={s.icon} alt="" className="w-4 h-4" />}
-                <span>{s.label || s.url}</span>
-              </a>
-            ))}
-          </div>
-        )}
+      
 
         {!isOwner && (
           <div className="mt-4">
@@ -269,7 +249,7 @@ export default function Profile({ username: propUsername, loggedInUser }) {
         )}
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 p-5">
         <Tab.Group selectedIndex={activeTab} onChange={setActiveTab}>
           <Tab.List className="flex justify-center sm:justify-start space-x-4 border-b border-gray-700">
             <Tab
