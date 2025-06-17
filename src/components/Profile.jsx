@@ -30,6 +30,10 @@ export default function Profile({ username: propUsername, loggedInUser }) {
   const [likeCounts, setLikeCounts] = useState({});
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [postToDeleteId, setPostToDeleteId] = useState(null);
+  const [loadingVideos, setLoadingVideos] = useState(true);
+  const [loadingPosts, setLoadingPosts] = useState(true);
+
+
 
   useEffect(() => {
 
@@ -41,11 +45,15 @@ export default function Profile({ username: propUsername, loggedInUser }) {
 
   const getUserPosts = () => {
     if (profile?._id) {
+      setLoadingPosts(true);
       api.getUserPosts(profile._id).then(fetchedPosts => {
         setPosts(fetchedPosts);
+      }).finally(() => {
+        setLoadingPosts(false);
       });
     }
   };
+
   useEffect(() => {
     const fetchLikeCounts = async () => {
       if (posts.length > 0) {
@@ -147,9 +155,14 @@ export default function Profile({ username: propUsername, loggedInUser }) {
   useEffect(() => {
     if (profile?._id) {
       getUserPosts();
+
+      setLoadingVideos(true)
+
       api.getideoByuser(profile._id).then((res = {}) => {
         const videos = res.videos || [];
         setVideos(videos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+      }).finally(() => {
+        setLoadingVideos(false);
       });
     }
   }, [profile?._id]);
@@ -235,7 +248,7 @@ export default function Profile({ username: propUsername, loggedInUser }) {
             <strong>{profile.channelsSubscribedToCount}</strong> Subscribed
           </span>
         </div>
-      
+
 
         {!isOwner && (
           <div className="mt-4">
@@ -274,8 +287,11 @@ export default function Profile({ username: propUsername, loggedInUser }) {
             </Tab>
           </Tab.List>
           <Tab.Panels className="mt-6">
+
             <Tab.Panel>
-              {videos.length > 0 ? (
+              {loadingVideos ? (
+                <Loader message="Loading videos..." />
+              ) : videos.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {videos.map((v) => (
                     <VideoCard
@@ -295,6 +311,7 @@ export default function Profile({ username: propUsername, loggedInUser }) {
                 <p className="text-center text-gray-500">No videos found.</p>
               )}
             </Tab.Panel>
+
 
             <Tab.Panel>
               {isOwner && (
@@ -319,13 +336,20 @@ export default function Profile({ username: propUsername, loggedInUser }) {
                   </div>
                 </div>
               )}
+
               <h3 className="text-xl font-bold text-white mb-4">Posts</h3>
-              {posts.length === 0 ? (
+
+              {loadingPosts ? (
+                <Loader message="Loading posts..." />
+              ) : posts.length === 0 ? (
                 <p className="text-center text-gray-400 py-6">No posts yet.</p>
               ) : (
                 <div className="space-y-6">
                   {posts.map((post) => (
-                    <div key={post._id} className="bg-[#292932] rounded-lg p-4 border border-purple-900/20 hover:shadow-md transition">
+                    <div
+                      key={post._id}
+                      className="bg-[#292932] rounded-lg p-4 border border-purple-900/20 hover:shadow-md transition"
+                    >
                       {editingPostId === post._id ? (
                         <>
                           <Input
@@ -333,30 +357,48 @@ export default function Profile({ username: propUsername, loggedInUser }) {
                             rows={3}
                             value={editText}
                             maxLength={500}
-                            onChange={e => setEditText(e.target.value)}
+                            onChange={(e) => setEditText(e.target.value)}
                             className="w-full bg-[#23232b] text-white border-2 border-purple-700 focus:ring-2 focus:ring-purple-500 p-3 rounded-lg resize-none placeholder-gray-400 shadow-md focus:shadow-lg mb-2"
                           />
                           <div className="flex gap-2 justify-end mb-2">
-                            <Button onClick={() => handleEditSave(post._id)} className="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">Save</Button>
-                            <Button onClick={handleEditCancel} className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-1 rounded">Cancel</Button>
+                            <Button
+                              onClick={() => handleEditSave(post._id)}
+                              className="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded"
+                            >
+                              Save
+                            </Button>
+                            <Button
+                              onClick={handleEditCancel}
+                              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-1 rounded"
+                            >
+                              Cancel
+                            </Button>
                           </div>
                         </>
                       ) : (
-                        <>
-                          <p className="text-white mb-3 whitespace-pre-line">{post.content}</p>
-                        </>
+                        <p className="text-white mb-3 whitespace-pre-line">{post.content}</p>
                       )}
                       <div className="flex items-center gap-4 text-sm text-gray-400 mt-2">
-                        <span>Likes: {likeCounts[post._id] ?? (post.likeby ? post.likeby.length : 0)}</span>
+                        <span>
+                          Likes: {likeCounts[post._id] ?? (post.likeby ? post.likeby.length : 0)}
+                        </span>
                         <Button
                           onClick={() => handleLikePost(post._id)}
-                          className={`flex items-center gap-1 px-3 py-1 rounded-full font-semibold transition-all duration-200 shadow-sm border border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 ${post.isLiked ? 'bg-red-600 text-white transform scale-105 animate-pulse' : 'bg-gray-800 text-purple-400 hover:bg-purple-700 hover:text-white'}`}
+                          className={`flex items-center gap-1 px-3 py-1 rounded-full font-semibold transition-all duration-200 shadow-sm border border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 ${post.isLiked
+                              ? "bg-red-600 text-white transform scale-105 animate-pulse"
+                              : "bg-gray-800 text-purple-400 hover:bg-purple-700 hover:text-white"
+                            }`}
                         >
-                          {post.isLiked ? '❤️ Liked' : '♡ Like'}
+                          {post.isLiked ? "❤️ Liked" : "♡ Like"}
                         </Button>
                         {isOwner && editingPostId !== post._id && (
                           <div className="flex gap-2">
-                            <Button onClick={() => handleEditClick(post)} className="text-blue-400 hover:text-blue-600">Edit</Button>
+                            <Button
+                              onClick={() => handleEditClick(post)}
+                              className="text-blue-400 hover:text-blue-600"
+                            >
+                              Edit
+                            </Button>
                             <button
                               onClick={() => handleDeletePost(post._id)}
                               className="text-red-500 hover:text-red-700"
@@ -371,7 +413,9 @@ export default function Profile({ username: propUsername, loggedInUser }) {
                 </div>
               )}
             </Tab.Panel>
+
           </Tab.Panels>
+
         </Tab.Group>
       </div>
       <DeleteConfirmationModal
