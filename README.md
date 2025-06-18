@@ -1,6 +1,6 @@
 # VideoHub Frontend
 
-**Live Project Link**: (https://videohub-official.netlify.app/)
+**Live Demo:** <mcurl name="VideoHub Live" url="https://videohub-official.netlify.app/"></mcurl>
 
 ## Project Description
 
