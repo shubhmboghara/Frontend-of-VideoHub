@@ -1,5 +1,7 @@
 # VideoHub Frontend
 
+VideoHub is a comprehensive video-sharing platform offering a user-friendly interface for browsing, watching, uploading, and managing videos. Interact with other users through comments, likes, and subscriptions. Built with React and modern web technologies for a responsive and engaging experience.
+
 **Live Demo:** <mcurl name="VideoHub Live" url="https://videohub-official.netlify.app/"></mcurl>
 
 ## Project Description
