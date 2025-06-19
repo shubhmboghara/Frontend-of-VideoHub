@@ -67,9 +67,6 @@ export default function Subscriptionss() {
                     src={data.avatar && data.avatar.trim() !== '' ? data.avatar : DefaultAvatar}
                     alt={data.username}
                     className="w-14 h-14 rounded-full object-cover object-center border-2 border-[#444] flex-shrink-0"
-                    width={56}
-                    height={56}
-                    loading="lazy"
                     onError={e => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
                   />
                 </Link>

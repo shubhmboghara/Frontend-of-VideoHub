@@ -9,7 +9,6 @@ import {
 } from 'react-icons/hi';
 
 import { Button, VideoCard,SubscribeButton,Loader,DefaultAvatar,PlaylistManager} from './index';
-import { getOptimizedImageSources } from '../utils/imageUtils';
 import { timeAgo } from '../utils';
 import { useVideo } from '../hooks/useVideos';
 import CommentSection from './CommentSection';
@@ -178,27 +177,20 @@ export default function VideoDetails({ showPopup }) {
 
             <div className="mt-6 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <picture>
-                  <source srcSet={getOptimizedImageSources(video.owner.avatar).avif} type="image/avif" />
-                  <source srcSet={getOptimizedImageSources(video.owner.avatar).webp} type="image/webp" />
-                  <img
-                    src={
-                      video.owner.avatar && video.owner.avatar.trim() !== ''
-                        ? video.owner.avatar
-                        : DefaultAvatar
-                    }
-                    alt={video.owner.username}
-                    width={48}
-                    height={48}
-                    loading="lazy"
-                    className="w-12 h-12 rounded-full cursor-pointer"
-                    onError={e => {
-                      e.target.onerror = null;
-                      e.target.src = DefaultAvatar;
-                    }}
-                    onClick={() => navigate(`/profile/${video.owner.username}`)}
-                  />
-                </picture>
+                <img
+                  src={
+                    video.owner.avatar && video.owner.avatar.trim() !== ''
+                      ? video.owner.avatar
+                      : DefaultAvatar
+                  }
+                  alt={video.owner.username}
+                  className="w-12 h-12 rounded-full cursor-pointer"
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = DefaultAvatar;
+                  }}
+                  onClick={() => navigate(`/profile/${video.owner.username}`)}
+                />
                 <div>
                   <h2 className="font-medium">{video.owner.username}</h2>
                   <p className="text-sm text-gray-400">

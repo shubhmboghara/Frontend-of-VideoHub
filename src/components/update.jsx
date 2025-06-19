@@ -169,9 +169,6 @@ function UserSettings() {
                   src={avatar}
                   alt="avatar"
                   className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-purple-500 object-cover bg-gray-800 shadow-lg"
-                  width={112}
-                  height={112}
-                  loading="lazy"
                 />
                 <button
                   type="button"

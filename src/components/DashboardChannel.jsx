@@ -4,7 +4,6 @@ import { deleteVideo, updateVideo } from '../hooks/video';
 import Loader from './Loader';
 import {DeleteConfirmationModal,EditVideoModal,UploadVideoModal} from "./index"
 import {TrashIcon,PencilSquareIcon} from "@heroicons/react/24/outline";
-import { getOptimizedImageSources } from '../utils/imageUtils';
 import { AiOutlineEye, AiOutlineLike } from 'react-icons/ai';
 import { HiUserGroup } from 'react-icons/hi';
 
@@ -193,11 +192,7 @@ function DashboardChannel({ showPopup }) {
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
-                                            <picture>
-                                                <source srcSet={getOptimizedImageSources(video.thumbnail).avif} type="image/avif" />
-                                                <source srcSet={getOptimizedImageSources(video.thumbnail).webp} type="image/webp" />
-                                                <img src={video.thumbnail} alt={video.title} width={40} height={40} loading="lazy" className="w-10 h-10 rounded-full object-cover mr-4" />
-                                            </picture>
+                                            <img src={video.thumbnail} alt={video.title} className="w-10 h-10 rounded-full object-cover mr-4" />
                                             <span className="text-sm font-medium text-white">{video.title}</span>
                                         </div>
                                     </td>

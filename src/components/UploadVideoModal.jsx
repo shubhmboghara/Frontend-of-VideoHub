@@ -188,9 +188,6 @@ const UploadVideoModal = ({ isOpen, onClose, onVideoUploaded }) => {
                 <img
                   src={URL.createObjectURL(thumbnail)}
                   alt="Thumbnail preview"
-                  width={320}
-                  height={180}
-                  loading="lazy"
                   className="w-full max-h-48 object-cover rounded"
                 />
               </div>

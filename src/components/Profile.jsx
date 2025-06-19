@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProfileApi } from "../hooks/Profile";
-import { DefaultAvatar,
+import {
+  DefaultAvatar,
   Button,
   Input,
   VideoCard,
@@ -9,7 +10,6 @@ import { DefaultAvatar,
   Loader,
   SubscribeButton,
 } from "./index";
-import { getOptimizedImageSources } from '../utils/imageUtils';
 import { Tab } from "@headlessui/react";
 import { toggleLike } from "../hooks/toggleLike";
 import { getLikeCount } from "../hooks/getCount";
@@ -186,19 +186,12 @@ export default function Profile({ username: propUsername, loggedInUser }) {
     <div className="relative w-full max-w-700 mx-auto   lg:pl-68 ">
       <div className="relative h-60 sm:h-72 bg-gradient-to-r from-gray-700 to-gray-900">
 
-        <picture>
-          <source srcSet={getOptimizedImageSources(profile.coverImage || DefaultCoverImage).avif} type="image/avif" />
-          <source srcSet={getOptimizedImageSources(profile.coverImage || DefaultCoverImage).webp} type="image/webp" />
-          <img
-            src={profile.coverImage || DefaultCoverImage}
-            onError={(e) => { e.target.onerror = null; e.target.src = DefaultCoverImage; }}
-            alt="Cover"
-            width={1280}
-            height={200}
-            loading="lazy"
-            className="w-full h-full object-cover opacity-80"
-          />
-        </picture>
+        <img
+          src={profile.coverImage || DefaultCoverImage}
+          onError={(e) => { e.target.onerror = null; e.target.src = DefaultCoverImage; }}
+          alt="Cover"
+          className="w-full h-full object-cover opacity-80"
+        />
 
         {isOwner && (
           <label className="absolute top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">
@@ -214,19 +207,12 @@ export default function Profile({ username: propUsername, loggedInUser }) {
         <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
           <label className="relative block group">
 
-            <picture>
-            <source srcSet={getOptimizedImageSources(profile.avatar || DefaultAvatar).avif} type="image/avif" />
-            <source srcSet={getOptimizedImageSources(profile.avatar || DefaultAvatar).webp} type="image/webp" />
             <img
               src={profile.avatar || DefaultAvatar}
               onError={(e) => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
               alt="Avatar"
-              width={128}
-              height={128}
-              loading="lazy"
-              className="w-32 h-32 rounded-full object-cover border-4 border-gray-800 shadow-lg"
+              className="w-32 h-32 rounded-full border-4 border-purple-600 bg-gray-800 object-cover shadow-lg"
             />
-          </picture>
 
             <span className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-purple-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Change</span>
 

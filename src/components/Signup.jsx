@@ -4,7 +4,6 @@ import axios from '../hooks/axios';
 import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../redux/slices/authSlice';
 import { Input, Button, DefaultCoverImage, DefaultAvatar } from './index';
-import { getOptimizedImageSources } from '../utils/imageUtils';
 import { useForm } from 'react-hook-form';
 
 const steps = ['Account Information', 'Upload Profile Picture', 'Upload Cover Image', 'Review'];
@@ -184,11 +183,7 @@ export default function MultiStepSignup({ showPopup }) {
                     )}
                     {step === 2 && (
                         <div className="flex flex-col items-center space-y-4">
-                            <picture>
-                                <source srcSet={getOptimizedImageSources(form.avatarPreview).avif} type="image/avif" />
-                                <source srcSet={getOptimizedImageSources(form.avatarPreview).webp} type="image/webp" />
-                                <img src={form.avatarPreview} alt={form.avatarIsDefault ? 'Default Avatar' : 'User Avatar'} className="w-24 h-24 rounded-full border-4 border-purple-500 object-cover" width={96} height={96} loading="lazy" />
-                            </picture>
+                            <img src={form.avatarPreview} alt={form.avatarIsDefault ? 'Default Avatar' : 'User Avatar'} className="w-24 h-24 rounded-full border-4 border-purple-500 object-cover" />
                             <Input id="avatar-upload" type="file" accept="image/*" onChange={e => handleImageChange(e, 'avatar')} hidden />
                             <div className="flex gap-2">
                                 <label htmlFor="avatar-upload" className="px-3 py-1 bg-gray-700 text-white rounded cursor-pointer hover:bg-gray-600">Select Image</label>
@@ -202,11 +197,7 @@ export default function MultiStepSignup({ showPopup }) {
                     )}
                     {step === 3 && (
                         <div className="flex flex-col items-center space-y-4">
-                            <picture>
-                                <source srcSet={getOptimizedImageSources(form.coverPreview).avif} type="image/avif" />
-                                <source srcSet={getOptimizedImageSources(form.coverPreview).webp} type="image/webp" />
-                                <img src={form.coverPreview} alt={form.coverIsDefault ? 'Default Cover' : 'Custom Cover'} className="w-full h-28 object-cover border-4 border-purple-500 rounded-lg" width={448} height={112} loading="lazy" />
-                            </picture>
+                            <img src={form.coverPreview} alt={form.coverIsDefault ? 'Default Cover' : 'Custom Cover'} className="w-full h-28 object-cover border-4 border-purple-500 rounded-lg" />
                             <Input id="cover-upload" type="file" accept="image/*" onChange={e => handleImageChange(e, 'coverImage')} hidden />
                             <div className="flex gap-2">
                                 <label htmlFor="cover-upload" className="px-3 py-1 bg-gray-700 text-white rounded cursor-pointer hover:bg-gray-600">Select Image</label>
@@ -225,14 +216,14 @@ export default function MultiStepSignup({ showPopup }) {
                             <ReviewItem label="Email" value={form.email} editStep={() => setStep(1)} />
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                    <img src={form.avatarPreview} alt="Avatar" className="w-12 h-12 rounded-full border-2 border-purple-500 object-cover" width={48} height={48} loading="lazy" />
+                                    <img src={form.avatarPreview} alt="Avatar" className="w-12 h-12 rounded-full border-2 border-purple-500 object-cover" />
                                     <span className="text-xs text-gray-400">{form.avatarIsDefault ? 'Default' : 'Custom'} Avatar</span>
                                 </div>
                                 <button type="button" onClick={() => setStep(2)} className="text-blue-400 text-xs underline">Edit</button>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                    <img src={form.coverPreview} alt="Cover" className="w-20 h-10 rounded border-2 border-purple-500 object-cover" width={80} height={40} loading="lazy" />
+                                    <img src={form.coverPreview} alt="Cover" className="w-20 h-10 rounded border-2 border-purple-500 object-cover" />
                                     <span className="text-xs text-gray-400">{form.coverIsDefault ? 'Default' : 'Custom'} Cover</span>
                                 </div>
                                 <button type="button" onClick={() => setStep(3)} className="text-blue-400 text-xs underline">Edit</button>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from "../hooks/axios";
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import {Button,Input,Loader,VideoCard,folderImg,DeleteConfirmationModal} from './index';
-import { getOptimizedImageSources } from '../utils/imageUtils';
 
 
 function PlaylistsComponent({ onPlaylistSelected }) {
@@ -249,17 +248,12 @@ function PlaylistsComponent({ onPlaylistSelected }) {
                       className="relative w-full aspect-video overflow-hidden rounded-t-2xl"
                       onClick={() => handlePlaylistSelect(playlist._id)}
                     >
-                      <picture>
-                        <source srcSet={getOptimizedImageSources(coverImg).avif} type="image/avif" />
-                        <source srcSet={getOptimizedImageSources(coverImg).webp} type="image/webp" />
-                        <img
-                          src={coverImg}
-                          alt={playlist.name}
-                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                          onError={e => { e.target.onerror = null; e.target.src = folderImg; }}
-                          loading="lazy"
-                        />
-                      </picture>
+                      <img
+                        src={coverImg}
+                        alt={playlist.name}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                        onError={e => { e.target.onerror = null; e.target.src = folderImg; }}
+                      />
                       <button className="absolute top-3 right-3 p-1 rounded-full bg-black/60 hover:bg-black/80">
                         <BsThreeDotsVertical className="text-gray-300" size={20} />
                       </button>

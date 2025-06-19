@@ -52,7 +52,7 @@ export default function Home({ showPopup, videosFromSearch = [], searching = fal
           ) : (
             !searchLoading && (
               <div className="col-span-full text-center text-white mt-[10%] ml-[33%] fixed ">
-                <img src={play} alt="No video" className="mx-auto mb-4 w-24 h-24 " width={96} height={96} />
+                <img src={play} alt="No video" className="mx-auto mb-4 w-24 h-24 " />
                 <p>{searching ? 'No search results found.' : 'No videos are available'}</p>
               </div>
             )

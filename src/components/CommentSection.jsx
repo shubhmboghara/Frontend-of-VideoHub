@@ -8,7 +8,6 @@ import {
 import { HiTrash, HiPencil, HiCheck, HiX, HiOutlineThumbUp, HiThumbUp } from 'react-icons/hi';
 import { toggleLike } from '../hooks/toggleLike';
 import {DefaultAvatar,DeleteConfirmationModal} from "./index"
-import { getOptimizedImageSources } from '../utils/imageUtils';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -160,19 +159,12 @@ export default function CommentSection({ videoId, showPopup }) {
           {comments.map((c) => (
             <div key={c._id} className="flex items-start gap-3 bg-[#23232b] rounded-xl p-3 shadow-md border border-purple-900/10 hover:shadow-purple-900/20 transition-all group">
               <Link to={`/profile/${c.owner.username}`}>
-                <picture>
-                  <source srcSet={getOptimizedImageSources(c.owner.avatar).avif} type="image/avif" />
-                  <source srcSet={getOptimizedImageSources(c.owner.avatar).webp} type="image/webp" />
-                  <img
-                    src={c.owner.avatar && c.owner.avatar.trim() !== '' ? c.owner.avatar : DefaultAvatar}
-                    alt={c.owner.username}
-                    width={56}
-                    height={56}
-                    loading="lazy"
-                    className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-purple-700 shadow group-hover:scale-105 transition-transform duration-200 cursor-pointer"
-                    onError={e => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
-                  />
-                </picture>
+                <img
+                  src={c.owner.avatar && c.owner.avatar.trim() !== '' ? c.owner.avatar : DefaultAvatar}
+                  alt={c.owner.username}
+                  className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-purple-700 shadow group-hover:scale-105 transition-transform duration-200 cursor-pointer"
+                  onError={e => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
+                />
               </Link>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
@@ -282,19 +274,12 @@ export default function CommentSection({ videoId, showPopup }) {
           {comments.slice(0, 1).map((c) => (
             <div key={c._id} className="flex items-start gap-3 bg-[#23232b] rounded-xl p-3 shadow-md border border-purple-900/10 hover:shadow-purple-900/20 transition-all group">
               <Link to={`/profile/${c.owner.username}`}>
-                <picture>
-                  <source srcSet={getOptimizedImageSources(c.owner.avatar).avif} type="image/avif" />
-                  <source srcSet={getOptimizedImageSources(c.owner.avatar).webp} type="image/webp" />
-                  <img
-                    src={c.owner.avatar && c.owner.avatar.trim() !== '' ? c.owner.avatar : DefaultAvatar}
-                    alt={c.owner.username}
-                    width={56}
-                    height={56}
-                    loading="lazy"
-                    className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-purple-700 shadow group-hover:scale-105 transition-transform duration-200 cursor-pointer"
-                    onError={e => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
-                  />
-                </picture>
+                <img
+                  src={c.owner.avatar && c.owner.avatar.trim() !== '' ? c.owner.avatar : DefaultAvatar}
+                  alt={c.owner.username}
+                  className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-purple-700 shadow group-hover:scale-105 transition-transform duration-200 cursor-pointer"
+                  onError={e => { e.target.onerror = null; e.target.src = DefaultAvatar; }}
+                />
               </Link>
               <div className="flex-1">
                 <div className="flex justify-between items-start">
