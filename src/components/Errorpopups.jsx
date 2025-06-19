@@ -28,3 +28,4 @@ const Errorpopups = ({ message, type, onClose }) => {
 };
 
 export default Errorpopups;
+

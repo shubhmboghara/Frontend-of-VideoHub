@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, LogoutBtn, Button, Search } from './index'
 import { useLocation, Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import { getOptimizedImageSources } from '../utils/imageUtils';
 
 import {
     HiHome,
@@ -43,11 +44,18 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
                     {loggedInUser && (
                         <Link to={`/profile/${loggedInUser.username}`} >
                             <div className="flex items-center mb-6 cursor-pointer p-5 pt-8">
-                                <img
-                                    src={loggedInUser.avatar}
-                                    alt={loggedInUser.fullname}
-                                    className="w-15 h-15 rounded-full border-2 border-purple-400"
-                                />
+                                <picture>
+                                    <source srcSet={getOptimizedImageSources(loggedInUser.avatar).avif} type="image/avif" />
+                                    <source srcSet={getOptimizedImageSources(loggedInUser.avatar).webp} type="image/webp" />
+                                    <img
+                                        src={loggedInUser.avatar}
+                                        alt={loggedInUser.fullname}
+                                        width={60}
+                                        height={60}
+                                        loading="lazy"
+                                        className="w-15 h-15 rounded-full border-2 border-purple-400"
+                                    />
+                                </picture>
                                 {!hideLabels && (
                                     <div className="ml-3 ">
                                         <div className="font-semibold">{loggedInUser.fullname}</div>
@@ -93,11 +101,18 @@ const Sidebar = ({ className, loggedInUser, isOpen, onClose }) => {
                     {loggedInUser && (
                         <Link to={`/profile/${loggedInUser.username}`} onClick={onClose}>
                             <div className="flex items-center mb-1 cursor-pointer p-5 ">
-                                <img
-                                    src={loggedInUser.avatar}
-                                    alt={loggedInUser.fullname}
-                                    className="w-15 h-15 rounded-full border-2 border-purple-400"
-                                />
+                                <picture>
+                                    <source srcSet={getOptimizedImageSources(loggedInUser.avatar).avif} type="image/avif" />
+                                    <source srcSet={getOptimizedImageSources(loggedInUser.avatar).webp} type="image/webp" />
+                                    <img
+                                        src={loggedInUser.avatar}
+                                        alt={loggedInUser.fullname}
+                                        width={60}
+                                        height={60}
+                                        loading="lazy"
+                                        className="w-15 h-15 rounded-full border-2 border-purple-400"
+                                    />
+                                </picture>
                                 <div className="ml-3 ">
                                     <div className="font-semibold">{loggedInUser.fullname}</div>
                                     <div className="text-md text-gray-400">@{loggedInUser.username}</div>

@@ -4,6 +4,7 @@ import play from '../assets/play.svg';
 import { useParams } from 'react-router-dom';
 import { useVideo } from '../hooks/useVideos';
 import Loader from '../components/Loader';
+import { Helmet } from 'react-helmet';
 
 export default function Home({ showPopup, videosFromSearch = [], searching = false, onClearSearch, searchLoading = false }) {
   const { id } = useParams();
@@ -17,6 +18,11 @@ export default function Home({ showPopup, videosFromSearch = [], searching = fal
 
   return (
     <div className="flex ">
+      <Helmet>
+        {showVideos.length > 0 && (
+          <link rel="preload" as="image" href={showVideos[0].thumbnail} fetchpriority="high" />
+        )}
+      </Helmet>
       <div className="flex-1 p-4">
 
         {searching && !searchLoading && (
@@ -46,7 +52,7 @@ export default function Home({ showPopup, videosFromSearch = [], searching = fal
           ) : (
             !searchLoading && (
               <div className="col-span-full text-center text-white mt-[10%] ml-[33%] fixed ">
-                <img src={play} alt="No video" className="mx-auto mb-4 w-24 h-24 " />
+                <img src={play} alt="No video" className="mx-auto mb-4 w-24 h-24 " width={96} height={96} />
                 <p>{searching ? 'No search results found.' : 'No videos are available'}</p>
               </div>
             )

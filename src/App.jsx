@@ -91,7 +91,9 @@ function App() {
 
         </div>
       </div>
-      <Errorpopups message={popupMessage} type={popupType} onClose={closePopup} />
+      <div className="fixed inset-0 z-50 pointer-events-none">
+        <Errorpopups message={popupMessage} type={popupType} onClose={closePopup} />
+      </div>
     </AuthLoader>
 
   ) : null
